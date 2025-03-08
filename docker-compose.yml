@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  app:
+    build:
+      # use in current directory
+      context: .    
+      args:
+        - DEV=true
+    ports:
+      - "8000:8000"     
+    volumes:
+      # map the app directory to the app directory in the container. It reflect the 
+      # changes happen in the local project reflected in the code running in the container
+      - ./app:/app   
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"
